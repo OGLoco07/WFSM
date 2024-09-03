@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <form id="admin-login-form">
+            <label for="admin-username">Username:</label>
+            <input type="text" id="admin-username" required>
+            <label for="admin-password">Password:</label>
+            <input type="password" id="admin-password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('admin-login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('admin-username').value;
+            const password = document.getElementById('admin-password').value;
+
+            // Simple check (replace with real authentication)
+            if (username === 'admin' && password === 'password') {
+                window.location.href = 'admin-dashboard.html'; // Redirect to admin dashboard
+            } else {
+                alert('Invalid credentials');
+            }
+        });
+    </script>
+</body>
+</html>
