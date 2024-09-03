@@ -74,8 +74,12 @@
             const username = document.getElementById('admin-username').value;
             const password = document.getElementById('admin-password').value;
 
+            // Hard-coded admin credentials
+            const adminUsername = 'admin'; // Replace with your desired username
+            const adminPassword = 'password'; // Replace with your desired password
+
             // Simple check (replace with real authentication)
-            if (username === 'admin' && password === 'password') {
+            if (username === adminUsername && password === adminPassword) {
                 window.location.href = 'admin-dashboard.html'; // Redirect to admin dashboard
             } else {
                 alert('Invalid credentials');
