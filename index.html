@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatFieldSuitsMe</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #ff6f61;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff9a85;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="greeting-page" class="page active">
+            <h1>Welcome to WhatFieldSuitsMe</h1>
+            <p>Select an interest to start the assessment:</p>
+            <button onclick="selectInterest('Technology')">Technology</button>
+            <button onclick="selectInterest('Business')">Business</button>
+            <button onclick="selectInterest('Science')">Science</button>
+            <button onclick="selectInterest('Health')">Health</button>
+            <button onclick="selectInterest('Art')">Art</button>
+        </div>
+        <div id="question-page" class="page hidden">
+            <h2 id="question-text">Question will appear here</h2>
+            <div id="options-container"></div>
+            <button onclick="nextQuestion()">Next</button>
+        </div>
+        <div id="result-page" class="page hidden">
+            <h2 id="result-text">Your Result</h2>
+            <button onclick="restart()">Restart</button>
+        </div>
+        <footer>
+            Brought to you by Asim M Ahmed
+        </footer>
+    </div>
+    <script>
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedInterest = '';
+        const questions = {
+            "Technology": [
+                { text: "What is the primary function of a CPU?", options: ["Process data", "Store data", "Transmit data"], answer: 0 },
+                { text: "What does HTML stand for?", options: ["HyperText Markup Language", "HyperText Machine Language", "HyperTransfer Markup Language"], answer: 0 },
+                { text: "What is RAM?", options: ["Random Access Memory", "Read-only Memory", "Rapid Access Module"], answer: 0 },
+                { text: "Which company created the iPhone?", options: ["Apple", "Samsung", "Google"], answer: 0 },
+                { text: "Who is known as the father of computers?", options: ["Charles Babbage", "Alan Turing", "Bill Gates"], answer: 0 },
+                { text: "What does CSS stand for?", options: ["Cascading Style Sheets", "Creative Style Sheets", "Computer Style Sheets"], answer: 0 },
+                { text: "What is the latest version of HTML?", options: ["HTML5", "HTML4", "HTML6"], answer: 0 },
+                { text: "What is an IP address?", options: ["Internet Protocol", "Internal Process", "Internet Password"], answer: 0 },
+                { text: "What does GUI stand for?", options: ["Graphical User Interface", "General User Interface", "Global User Interface"], answer: 0 },
+                { text: "What is a byte?", options: ["8 bits", "16 bits", "32 bits"], answer: 0 },
+                { text: "Which is a programming language?", options: ["Python", "Snake", "Lizard"], answer: 0 },
+                { text: "What does USB stand for?", options: ["Universal Serial Bus", "Uniform System Bus", "Universal System Board"], answer: 0 },
+                { text: "What is the use of a router?", options: ["Direct network traffic", "Store files", "Run applications"], answer: 0 },
+                { text: "What is the main function of a firewall?", options: ["Block unauthorized access", "Store data", "Speed up a computer"], answer: 0 },
+                { text: "What is an example of an operating system?", options: ["Windows", "HTML", "CSS"], answer: 0 },
+                { text: "What is the purpose of an antivirus?", options: ["Protect against malware", "Speed up the computer", "Clean the screen"], answer: 0 },
+                { text: "What is cloud computing?", options: ["Internet-based computing", "Local storage", "Desktop computing"], answer: 0 },
+                { text: "What is a server?", options: ["A computer that provides data to other computers", "A client", "A desktop computer"], answer: 0 },
+                { text: "Which is a search engine?", options: ["Google", "Facebook", "WhatsApp"], answer: 0 },
+                { text: "What is a URL?", options: ["Uniform Resource Locator", "Universal Resource Locator", "Uniform Resource Link"], answer: 0 }
+            ],
+            "Business": [
+                // Add 20 questions for Business
+            ],
+            "Science": [
+                // Add 20 questions for Science
+            ],
+            "Health": [
+                // Add 20 questions for Health
+            ],
+            "Art": [
+                // Add 20 questions for Art
+            ]
+        };
+
+        function selectInterest(interest) {
+            selectedInterest = interest;
+            document.getElementById('greeting-page').classList.remove('active');
+            document.getElementById('question-page').classList.add('active');
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const currentQuestion = questions[selectedInterest][currentQuestionIndex];
+            document.getElementById('question-text').textContent = currentQuestion.text;
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            currentQuestion.options.forEach((option, index) => {
+                const optionButton = document.createElement('button');
+                optionButton.textContent = option;
+                optionButton.onclick = () => checkAnswer(index);
+                optionsContainer.appendChild(optionButton);
+            });
+        }
+
+        function checkAnswer(selectedOption) {
+            const currentQuestion = questions[selectedInterest][currentQuestionIndex];
+            if (selectedOption === currentQuestion.answer) {
+                score += 5; // Each correct answer gives 5 points
+            }
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions[selectedInterest].length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('question-page').classList.remove('active');
+            document.getElementById('result-page').classList.add('active');
+            const resultText = score >= 60 
+                ? "This interest suits you!"
+                : "This interest doesn't really suit you. You may find yourself in another field.";
+            document.getElementById('result-text').textContent = `Your score is ${score}. ${resultText}`;
+        }
+
+        function restart() {
+            score = 0;
+            currentQuestionIndex = 0;
+            selectedInterest = '';
+            document.getElementById('result-page').classList.remove('active');
+            document.getElementById('greeting-page').classList.add('active');
+        }
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
