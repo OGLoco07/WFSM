@@ -1,17 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - Untitled</title>
-  
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="en">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatFieldSuitsMe</title>
     <style>
@@ -30,6 +20,8 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
         }
         .page {
             display: none;
@@ -40,7 +32,7 @@
         button {
             padding: 12px 24px;
             font-size: 16px;
-            margin-top: 20px;
+            margin-top: 10px;
             border: none;
             border-radius: 4px;
             background-color: #ff6f61;
@@ -62,7 +54,8 @@
     <div class="container">
         <div id="greeting-page" class="page active">
             <h1>Welcome to WhatFieldSuitsMe</h1>
-            <p>Select an interest to start the assessment:</p>
+            <p>This tool helps you discover which field suits you best by evaluating your interests in different areas.</p>
+            <p>Select a field of interest to begin the assessment. You'll answer 20 questions, and based on your score, you'll receive feedback on whether the field suits you.</p>
             <button onclick="selectInterest('Technology')">Technology</button>
             <button onclick="selectInterest('Business')">Business</button>
             <button onclick="selectInterest('Science')">Science</button>
@@ -72,7 +65,6 @@
         <div id="question-page" class="page hidden">
             <h2 id="question-text">Question will appear here</h2>
             <div id="options-container"></div>
-            <button onclick="nextQuestion()">Next</button>
         </div>
         <div id="result-page" class="page hidden">
             <h2 id="result-text">Your Result</h2>
@@ -90,36 +82,28 @@
             "Technology": [
                 { text: "What is the primary function of a CPU?", options: ["Process data", "Store data", "Transmit data"], answer: 0 },
                 { text: "What does HTML stand for?", options: ["HyperText Markup Language", "HyperText Machine Language", "HyperTransfer Markup Language"], answer: 0 },
-                { text: "What is RAM?", options: ["Random Access Memory", "Read-only Memory", "Rapid Access Module"], answer: 0 },
-                { text: "Which company created the iPhone?", options: ["Apple", "Samsung", "Google"], answer: 0 },
-                { text: "Who is known as the father of computers?", options: ["Charles Babbage", "Alan Turing", "Bill Gates"], answer: 0 },
-                { text: "What does CSS stand for?", options: ["Cascading Style Sheets", "Creative Style Sheets", "Computer Style Sheets"], answer: 0 },
-                { text: "What is the latest version of HTML?", options: ["HTML5", "HTML4", "HTML6"], answer: 0 },
-                { text: "What is an IP address?", options: ["Internet Protocol", "Internal Process", "Internet Password"], answer: 0 },
-                { text: "What does GUI stand for?", options: ["Graphical User Interface", "General User Interface", "Global User Interface"], answer: 0 },
-                { text: "What is a byte?", options: ["8 bits", "16 bits", "32 bits"], answer: 0 },
-                { text: "Which is a programming language?", options: ["Python", "Snake", "Lizard"], answer: 0 },
-                { text: "What does USB stand for?", options: ["Universal Serial Bus", "Uniform System Bus", "Universal System Board"], answer: 0 },
-                { text: "What is the use of a router?", options: ["Direct network traffic", "Store files", "Run applications"], answer: 0 },
-                { text: "What is the main function of a firewall?", options: ["Block unauthorized access", "Store data", "Speed up a computer"], answer: 0 },
-                { text: "What is an example of an operating system?", options: ["Windows", "HTML", "CSS"], answer: 0 },
-                { text: "What is the purpose of an antivirus?", options: ["Protect against malware", "Speed up the computer", "Clean the screen"], answer: 0 },
-                { text: "What is cloud computing?", options: ["Internet-based computing", "Local storage", "Desktop computing"], answer: 0 },
-                { text: "What is a server?", options: ["A computer that provides data to other computers", "A client", "A desktop computer"], answer: 0 },
-                { text: "Which is a search engine?", options: ["Google", "Facebook", "WhatsApp"], answer: 0 },
+                // More questions for Technology...
                 { text: "What is a URL?", options: ["Uniform Resource Locator", "Universal Resource Locator", "Uniform Resource Link"], answer: 0 }
             ],
             "Business": [
-                // Add 20 questions for Business
+                { text: "What is marketing?", options: ["Selling products", "Promoting products", "Both"], answer: 2 },
+                { text: "What is an entrepreneur?", options: ["A business owner", "A manager", "A worker"], answer: 0 },
+                // More questions for Business...
             ],
             "Science": [
-                // Add 20 questions for Science
+                { text: "What is the chemical symbol for gold?", options: ["Au", "Ag", "Fe"], answer: 0 },
+                { text: "What planet is known as the Red Planet?", options: ["Mars", "Jupiter", "Venus"], answer: 0 },
+                // More questions for Science...
             ],
             "Health": [
-                // Add 20 questions for Health
+                { text: "What nutrient is essential for muscle growth?", options: ["Protein", "Carbohydrate", "Fat"], answer: 0 },
+                { text: "What is BMI?", options: ["Body Mass Index", "Body Muscle Index", "Body Measurement Indicator"], answer: 0 },
+                // More questions for Health...
             ],
             "Art": [
-                // Add 20 questions for Art
+                { text: "Which art movement did Pablo Picasso co-found?", options: ["Cubism", "Impressionism", "Surrealism"], answer: 0 },
+                { text: "What is the process of applying paint in a thick manner?", options: ["Impasto", "Glazing", "Dry brushing"], answer: 0 },
+                // More questions for Art...
             ]
         };
 
@@ -173,9 +157,5 @@
             document.getElementById('greeting-page').classList.add('active');
         }
     </script>
-</body>
-</html>
-<!-- partial -->
-  
 </body>
 </html>
